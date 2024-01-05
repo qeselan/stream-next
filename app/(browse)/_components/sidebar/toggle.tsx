@@ -1,14 +1,18 @@
-"use client";
+'use client';
 
-import { Hint } from "@/components/hint";
-import { useSidebar } from "@/store/use-sidebar";
-import { Button } from "@/components/ui/button";
-import { ArrowLeftFromLine, ArrowRightFromLine } from "lucide-react";
+import { useEffect } from 'react';
+import { useMediaQuery } from 'usehooks-ts';
+
+import { Hint } from '@/components/hint';
+import { useSidebar } from '@/store/use-sidebar';
+import { Button } from '@/components/ui/button';
+import { ArrowLeftFromLine, ArrowRightFromLine } from 'lucide-react';
 
 export const Toggle = () => {
+  const matches = useMediaQuery('(max-width: 1024px)');
   const { collapsed, onExpand, onCollapse } = useSidebar((state) => state);
 
-  const label = collapsed ? "Expand" : "Collapse";
+  const label = collapsed ? 'Expand' : 'Collapse';
 
   return (
     <>
@@ -22,7 +26,7 @@ export const Toggle = () => {
         </div>
       )}
       {!collapsed && (
-        <div className="p-3 pl-6 mb-2 flex items-center w-full">
+        <div className="hidden lg:flex p-3 pl-6 mb-2 items-center w-full">
           <p className="font-semibold text-primary">For you</p>
           <Hint label={label} side="right" asChild>
             <Button
